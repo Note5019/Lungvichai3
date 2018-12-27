@@ -27,4 +27,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## What do I do?
-สร้างโปรเจคด้วย ng new {ชื่อโปรเจค}
+-* สร้างโปรเจคด้วย                                                >> ng new {ชื่อโปรเจค}
+-* ลองบิวท์โปรเจคด้วยคำสั่ง                                         >> ng build --prod
+-* เริ่มเอา firebase และ angularfire2 เข้ามาในโปรเจค                >> npm install firebase angularfire2
+    อ้างอิงเว็บ >> https://alligator.io/angular/cloud-firestore-angularfire/
+    
