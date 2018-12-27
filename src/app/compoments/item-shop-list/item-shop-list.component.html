@@ -1,0 +1,25 @@
+<p>
+  item-shop-list works!
+</p>
+<ul>
+  <li *ngFor="let item of itemList$ | async">
+    {{ item.name }} || {{ item.price }} <button (click)="SelectItem(item)">Edit</button><button (click)="DeleteItem(item)">Delect</button>
+  </li>
+</ul>
+<form (submit)="AddItem()">
+  <label for="name">Name: </label>
+  <input type="text" name="name" [(ngModel)]="item.name" placeholder="Type Names">
+  <br>
+  <label for="price">Price: </label>
+  <input type="number" name="price" [(ngModel)]="item.price" placeholder="Price">
+  <button type="submit">OK</button>
+</form>
+
+<form (submit)="EditItem(item)">
+  <label for="name">Name: </label>
+  <input type="text" name="name" [(ngModel)]="item.name" placeholder="Type Names">
+  <br>
+  <label for="price">Price: </label>
+  <input type="number" name="price" [(ngModel)]="item.price" placeholder="Price">
+  <button type="submit">OK</button>
+</form>
