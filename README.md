@@ -35,3 +35,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 <br> npm install --save bootstrap
 npm install jquery --save
 npm install popper.js --save
+
+https://valor-software.com/ngx-bootstrap/#/alerts
