@@ -32,3 +32,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 -* เริ่มเอา firebase และ angularfire2 เข้ามาในโปรเจค                >> npm install firebase angularfire2
     อ้างอิงเว็บ >> https://alligator.io/angular/cloud-firestore-angularfire/
     
+<br> npm install --save bootstrap
