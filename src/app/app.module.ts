@@ -11,7 +11,10 @@ import { environment } from '../environments/environment';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule} from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AlertModule } from 'ngx-bootstrap';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+
 import { HeaderComponent } from './components/header/header.component';
 import { ItemFactoryListComponent } from './components/item-factory-list/item-factory-list.component';
 export const AppRoutes: Routes = [
@@ -32,8 +35,10 @@ export const AppRoutes: Routes = [
     AngularFirestoreModule.enablePersistence(),
     AngularFireStorageModule,
     RouterModule.forRoot(AppRoutes),
+    AngularFontAwesomeModule,
     FormsModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    ButtonsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

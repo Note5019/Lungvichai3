@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row container-header">
-    <div class="col col-lg-8 col-md-6 col-sm-10">
+    <div class="col-auto">
       <span class="align-middle">รายการสินค้าหน้าร้าน</span>
     </div>
-    <div class="col col-lg-4 col-md-6 col-sm-2" style="text-align: right;">
+    <div class="col-auto search-item-form" style="text-align: right;">
       <form (submit)="SearchItems(str.value)">
         <input type="text" #str placeholder="Try to seach...">
         <button class="btn btn-info">ค้นหา</button>
@@ -12,23 +12,33 @@
   </div>
   <alert [dismissible]="true" [isOpen]="isSearch" (onClosed)="onAlertClosed()">filtered!</alert>
   <div class="row container-item-list">
-    <div class="col col-lg-3 col-md-4 col-sm-6" *ngFor="let item of itemList$ | async">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let item of itemList$ | async">
       <div class="container-item-button-group">
-          <button><i class="fas fa-ellipsis-h"></i></button>
+        <button class="btn btn-info">
+          <fa name="ellipsis-h" size="lg"></fa>
+        </button>
       </div>
       <div class="container-item">
-        <div class="col align-middle">
+        <div class="col">
           <img class="" alt="image" src="{{item.imageUrl}}" onError="this.src='./assets/image/20160507185832.jpg'">
         </div>
         <div class="col">
-          {{ item.name }} ||
+          {{ item.name }}
         </div>
         <div class="col">
-          {{ item.price }}
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">Size: 1" 1/4'</div>
+            <div class="col-xs-12  col-sm-6 col-md-12 col-lg-12">Color: เหลือง </div>
+          </div>
+          <div class="row container-item-footer">
+            <div class="col-6 col-md-12 col-lg-12">QTY: </div>
+            <div class="col-6 col-md-12 col-lg-12">Price: ฿{{ item.price }}</div>
+          </div>
         </div>
-        <div class="col">
+
+        <!-- <div class="col">
           <button (click)="SelectItem(item)">Edit</button><button (click)="DeleteItem(item)">Delete</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
