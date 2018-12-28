@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row container-header">
+    <div class="col col-lg-8 col-md-6 col-sm-10">
+      <span class="align-middle">รายการสินค้าหน้าร้าน</span>
+    </div>
+    <div class="col col-lg-4 col-md-6 col-sm-2" style="text-align: right;">
+      <form (submit)="SearchItems(str.value)">
+        <input type="text" #str placeholder="Try to seach...">
+        <button class="btn btn-info">ค้นหา</button>
+      </form>
+    </div>
+  </div>
+  <alert [dismissible]="true" [isOpen]="isSearch" (onClosed)="onAlertClosed()">filtered!</alert>
+  <div class="row container-item-list">
+    <div class="col col-lg-3 col-md-4 col-sm-6" *ngFor="let item of itemList$ | async">
+      <div class="container-item-button-group">
+          <button><i class="fas fa-ellipsis-h"></i></button>
+      </div>
+      <div class="container-item">
+        <div class="col align-middle">
+          <img class="" alt="image" src="{{item.imageUrl}}" onError="this.src='./assets/image/20160507185832.jpg'">
+        </div>
+        <div class="col">
+          {{ item.name }} ||
+        </div>
+        <div class="col">
+          {{ item.price }}
+        </div>
+        <div class="col">
+          <button (click)="SelectItem(item)">Edit</button><button (click)="DeleteItem(item)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form (submit)="AddItem()">
+    <label for="name">Name: </label>
+    <input type="text" name="name" [(ngModel)]="addedItem.name" placeholder="Type Names">
+    <br>
+    <label for="price">Price: </label>
+    <input type="number" name="price" [(ngModel)]="addedItem.price" placeholder="Price">
+    <div class="file">
+      <label class="file-label">
+        <input class="file-input" type="file" (change)="uploadFile($event.target.files)">
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fs fs-upload"></i>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div *ngIf="(snapshot | async) as snap">
+      {{ snap.bytesTransferred}}
+
+    </div>
+    <button type="submit">OK</button>
+  </form>
+
+  <form (submit)="EditItem(selectedItem)">
+    <label for="name">Name: </label>
+    <input type="text" name="name" [(ngModel)]="selectedItem.name" placeholder="Type Names">
+    <br>
+    <label for="price">Price: </label>
+    <input type="number" name="price" [(ngModel)]="selectedItem.price" placeholder="Price">
+    <button class="btn btn-default" type="submit">OK</button>
+  </form>
+</div>

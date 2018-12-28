@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-sm navbar-override">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="https://www.logolynx.com/images/logolynx/26/26983e8922aa07e1d0313daad57d9d39.png" alt="logo" style="width:40px;">ชื่อร้าน
+  </a>
+
+  <div class="navbar-link-group">
+    <ul class="nav nav-pills">
+      <div *ngFor="let menu of headerNavbarList; index as i">
+        <li class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="[menu.href]" (click)="activedMenu(i)" [ngClass]="{'active' : selectedMenu == menu.id }">{{
+            menu.titel }}</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+
+</nav>
+
+<!-- <div class="navbar-link-group">
+      <ul class="nav nav-pills" #ul>
+        <li class="nav-item">
+          <a class="nav-link active" href="#" >หน้าร้าน</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">โรงงาน</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">อื่นๆ</a>
+        </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Dropdown</a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                      </div>
+                    </li>
+      </ul>
+    </div> -->

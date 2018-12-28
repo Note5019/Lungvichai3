@@ -1,1 +1,93 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; */
+@import url('https://fonts.googleapis.com/css?family=Mali');
+
+* {
+  font-family: 'Mali', cursive;
+}
+
+:root {
+  --nav-bar-top-bg-color: #454343;
+  --main-bg-color: #F0EDEC;
+
+  --container-header: #AFADAC;
+  --container-item-list: #C5C2C2;
+  --container-item: #DBD8D7;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+a {
+  color: #F0EDEC;
+}
+
+.navbar-link-group a.active {
+  background-color: #888787 !important;
+}
+
+.nav-item a:hover {
+  background-color: #666565;
+  color: #F0EDEC;
+}
+
+.nav-item a:active {
+  background-color: #3F3D3D;
+}
+
+/* a:hover {
+    background: linear-gradient(white, white, pink);
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
+
+.navbar-override {
+  background-color: var(--nav-bar-top-bg-color);
+  text-decoration-color: #F0EDEC;
+}
+
+.navbar-link-group {
+  margin-left: 5vw;
+}
+
+.container-header {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  padding: 10px;
+  background-color: var(--container-header);
+  border: 2px solid var(--container-header);
+  border-radius: 10px;
+}
+
+.container-item-list {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  padding: 10px;
+  background-color: var(--container-item-list);
+  border: 2px solid var(--container-item-list);
+  border-radius: 10px;
+}
+
+.container-item {
+  position: relative;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  padding: 10px;
+  background-color: var(--container-item);
+  border: 2px solid var(--container-item);
+  border-radius: 10px;
+}
+
+.container-item img {
+  height: 10em;
+  width: 10em;
+}
+
+.container-item-button-group {
+  position: absolute;
+  right: 0;
+  margin-top: 2vh;
+  margin-right: 2vh;
+  z-index: 1;
+}
