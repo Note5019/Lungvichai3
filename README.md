@@ -33,3 +33,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     อ้างอิงเว็บ >> https://alligator.io/angular/cloud-firestore-angularfire/
     
 <br> npm install --save bootstrap
+npm install jquery --save
+npm install popper.js --save
