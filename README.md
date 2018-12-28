@@ -37,3 +37,4 @@ npm install jquery --save
 npm install popper.js --save
 
 https://valor-software.com/ngx-bootstrap/#/alerts
+https://stackoverflow.com/questions/37649164/how-to-add-bootstrap-to-an-angular-cli-project
