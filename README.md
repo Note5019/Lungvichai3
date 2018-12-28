@@ -32,3 +32,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 -* เริ่มเอา firebase และ angularfire2 เข้ามาในโปรเจค                >> npm install firebase angularfire2
     อ้างอิงเว็บ >> https://alligator.io/angular/cloud-firestore-angularfire/
     
+<br> npm install --save bootstrap
+npm install jquery --save
+npm install popper.js --save
+
+https://valor-software.com/ngx-bootstrap/#/alerts
+https://stackoverflow.com/questions/37649164/how-to-add-bootstrap-to-an-angular-cli-project
+
+https://stackoverflow.com/questions/51430179/angular-6-getting-download-url-for-firebase-storage-file-after-uploading/51430345
