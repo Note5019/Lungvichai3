@@ -40,3 +40,5 @@ https://valor-software.com/ngx-bootstrap/#/alerts
 https://stackoverflow.com/questions/37649164/how-to-add-bootstrap-to-an-angular-cli-project
 
 https://stackoverflow.com/questions/51430179/angular-6-getting-download-url-for-firebase-storage-file-after-uploading/51430345
+
+https://github.com/zxing-js/ngx-scanner/wiki/Getting-Started
