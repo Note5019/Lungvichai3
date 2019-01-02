@@ -1,3 +1,153 @@
-<p>
-  item-factory-list works!
-</p>
+<div #header class="container-header" [ngClass]="{'header-fixed-position': isFixedHeader}">
+  <div class="row" style="margin-bottom: 1vh;">
+    <div class="col-lg-6 col-sm-12">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <span class="align-middle">รายการสินค้าโรงงาน</span>
+          <div class="btn-group btn-group-toggle margin-left" ngbRadioGroup name="radioBasic" [(ngModel)]="viewMode">
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="image">
+              <fa name="image"></fa>
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="list">
+              <fa name="list-ol"></fa>
+            </label>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <alert [dismissible]="true" [isOpen]="isSearch" (onClosed)="onAlertFilterClosed()">filtered!</alert>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-sm-12 search-item-form" style="text-align: center;">
+      <form (submit)="SearchItems(searchkeyWord)">
+        <input type="text" #str [(ngModel)]="searchkeyWord" [ngModelOptions]="{standalone: true}" placeholder="Try to seach...">
+        <button class="btn btn-info margin-left">ค้นหา</button>
+        <button class="btn btn-info">barcode</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="slide-nav" #SlideNav>
+        <span>หมวด</span>
+        <a href="#" class="active">ทั้งหมด</a>
+        <a href="#" class="icon" (click)="openSlideNavs()">
+          <i class="fa fa-bars"></i>
+        </a>
+        <a href="#">News</a>
+        <a href="#">Contact</a>
+        <a href="#">About</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div *ngIf="viewMode == 'image'">
+    <div class="row contain-content">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let item of itemList$ | async">
+        <div class="options-button-group">
+          <button class="btn btn-info">
+            <fa name="ellipsis-h" size="lg"></fa>
+          </button>
+        </div>
+        <div class="item-imageMode">
+          <div class="col">
+            <img class="" alt="image" src="{{item.imageUrl}}" onError="this.src='./assets/image/20160507185832.jpg'">
+          </div>
+          <div class="col">
+            {{ item.name }}
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">Size: 1" 1/4'</div>
+              <div class="col-xs-12  col-sm-6 col-md-12 col-lg-12">Color: เหลือง </div>
+            </div>
+            <div class="row item-imageMode-footer">
+              <div class="col-6 col-md-12 col-lg-12">QTY: </div>
+              <div class="col-6 col-md-12 col-lg-12">Price: ฿{{ item.price }}</div>
+            </div>
+          </div>
+          <!-- <div class="col">
+              <button (click)="SelectItem(item)">Edit</button><button (click)="DeleteItem(item)">Delete</button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="viewMode == 'list'">
+    <div class="row contain-content">
+      <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
+        
+      </div> -->
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">QTY</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of itemList$ | async">
+            <tr>
+              <th scope="row">
+                <div class="">
+                  <button class="btn btn-info">
+                    <fa name="ellipsis-h" size="lg"></fa>
+                  </button>
+                </div>
+              </th>
+              <td>{{ item.name}}</td>
+              <td>QTY</td>
+              <td>฿{{ item.price}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <form (submit)="AddItem()">
+    <label for="name">Name: </label>
+    <input type="text" name="name" [(ngModel)]="addedItem.name" placeholder="Type Names">
+    <br>
+    <label for="price">Price: </label>
+    <input type="number" name="price" [(ngModel)]="addedItem.price" placeholder="Price">
+    <div class="file">
+      <label class="file-label">
+        <input class="file-input" type="file" (change)="uploadFile($event.target.files)">
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fs fs-upload"></i>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div *ngIf="(snapshot | async) as snap">
+      {{ snap.bytesTransferred}}
+
+    </div>
+    <button type="submit">OK</button>
+  </form>
+
+  <form (submit)="EditItem(selectedItem)">
+    <label for="name">Name: </label>
+    <input type="text" name="name" [(ngModel)]="selectedItem.name" placeholder="Type Names">
+    <br>
+    <label for="price">Price: </label>
+    <input type="number" name="price" [(ngModel)]="selectedItem.price" placeholder="Price">
+    <button class="btn btn-default" type="submit">OK</button>
+  </form>
+
+</div>

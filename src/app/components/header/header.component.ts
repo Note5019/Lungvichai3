@@ -11,17 +11,14 @@ export class HeaderComponent implements OnInit {
     {
       id: 0,
       titel: 'หน้าร้าน',
-      href: ''
+      href: '',
+      // CSSclass: ''
     },
     {
       id: 1,
       titel: 'โรงงาน',
-      href: 'factory-list'
-    },
-    {
-      id: 2,
-      titel: 'อื่นๆ',
-      href: ''
+      href: 'factory-list',
+      // CSSclass: ''
     }
   ];
   constructor() {
@@ -32,8 +29,8 @@ export class HeaderComponent implements OnInit {
   }
 
   activedMenu(index) {
-    console.log('index', index);
-    console.log('selectedMenu', this.selectedMenu);
+    // console.log('index', index);
+    // console.log('selectedMenu', this.selectedMenu);
     this.selectedMenu = index;
   }
 }
