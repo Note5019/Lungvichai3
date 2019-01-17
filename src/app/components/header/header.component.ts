@@ -12,17 +12,36 @@ export class HeaderComponent implements OnInit {
       id: 0,
       titel: 'หน้าร้าน',
       href: '',
-      // CSSclass: ''
+      subMenu: [
+        {
+          title: 'test',
+          href: '#'
+        }
+      ]
     },
     {
       id: 1,
       titel: 'โรงงาน',
       href: 'factory-list',
-      // CSSclass: ''
+      subMenu: [
+        {
+          title: 'เพิ่มสินค้าโรงงาน',
+          href: 'item-detail'
+        },
+        {
+          title: 'test',
+          href: '#'
+        },
+        {
+          title: 'test',
+          href: '#'
+        }
+      ]
     }
   ];
   constructor() {
     this.selectedMenu = 0;
+    // console.log(this.router.url);
    }
 
   ngOnInit() {
@@ -33,4 +52,8 @@ export class HeaderComponent implements OnInit {
     // console.log('selectedMenu', this.selectedMenu);
     this.selectedMenu = index;
   }
+
+  // goTopage(viewMode) {
+  //   this.router.navigate(['/factory-list', viewMode]);
+  // }
 }

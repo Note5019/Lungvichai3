@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { NgbButtonsModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbButtonsModule, NgbDropdownModule, NgbProgressbarModule, NgbPopoverModule, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertModule } from 'ngx-bootstrap';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
@@ -24,7 +24,7 @@ import { ItemFactoryListComponent } from './components/item-factory-list/item-fa
 import { QrCodeReader } from './qr-code-reader.service';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 export const AppRoutes: Routes = [
-  { path: 'factory-list', component: ItemFactoryListComponent },
+  { path: 'factory-list/:viewMode', component: ItemFactoryListComponent },
   { path: 'item-detail', component: ItemDetailComponent },
   { path: '', component: ItemFactoryListComponent  }, // ItemShopListComponent
   { path: '**', redirectTo: '/', pathMatch: 'full' }  // ถ้าไม่เจอ part ใดเลยจะมานี้
@@ -47,6 +47,9 @@ export const AppRoutes: Routes = [
     FormsModule,
     NgbButtonsModule,
     NgbDropdownModule,
+    NgbProgressbarModule,
+    NgbPopoverModule,
+    NgbModalModule,
     AlertModule.forRoot(),
     ButtonsModule.forRoot(),
     // NgxQRCodeModule, // ตัวแปลงคำเป็นคิวอาร์โค้ด

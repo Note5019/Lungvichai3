@@ -35,13 +35,15 @@ export class ItemShopListComponent implements OnInit {
     name: '',
     price: 0,
     imageUrl: '',
-    imageName: ''
+    imageName: '',
+    qty: 0
   };
   selectedItem: ItemShop = {
     name: '',
     price: 0,
     imageUrl: '',
-    imageName: ''
+    imageName: '',
+    qty: 0
   };
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage, private qrReader: QrCodeReader) {
     this.queryAllData();

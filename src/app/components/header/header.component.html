@@ -1,30 +1,52 @@
 <nav class="navbar navbar-expand-sm navbar-override">
   <!-- Brand/logo -->
   <a class="navbar-brand" href="#">
-    <img src="https://www.logolynx.com/images/logolynx/26/26983e8922aa07e1d0313daad57d9d39.png" alt="logo" style="width:40px;">ชื่อร้าน
+    <img src="https://www.logolynx.com/images/logolynx/26/26983e8922aa07e1d0313daad57d9d39.png" alt="logo" style="width:40px;">เย้!
   </a>
 
   <div class="navbar-link-group">
     <ul class="nav nav-pills">
       <div *ngFor="let menu of headerNavbarList; index as i">
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="[menu.href]" (click)="activedMenu(i)" [ngClass]="{'active' : selectedMenu == menu.id }">{{
-            menu.titel }}</a>
+          <div class="btn-group mr-3">
+            <button type="button" class="btn btn-primary" [ngClass]="{'active' : selectedMenu == menu.id }">
+              <a class="nav-link" href="#" [routerLink]="[menu.href]" (click)="activedMenu(i)">{{
+                menu.titel }}</a>
+            </button>
+            <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+              <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+              <div class="dropdown-menu" ngbDropdownMenu>
+                <button class="dropdown-item" *ngFor="let subMenu of menu.subMenu" routerLink="/{{subMenu.href}}">{{subMenu.title}}</button>
+              </div>
+            </div>
+          </div>
+
         </li>
       </div>
     </ul>
   </div>
   
-  <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-primary margin-left" id="dropdownBasic1" ngbDropdownToggle>
-        <fa name="cog"></fa>
-      </button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item" routerLink="/item-detail">เพิ่มสินค้า</button>
-        <button class="dropdown-item">Another Action</button>
-        <button class="dropdown-item">Something else is here</button>
-      </div>
+  <!-- <div ngbDropdown class="d-inline-block">
+    <button class="btn btn-primary margin-left" id="dropdownBasic1" ngbDropdownToggle>
+      <fa name="cog"></fa>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button class="dropdown-item" routerLink="/item-detail">เพิ่มสินค้าโรงงาน</button>
+      <button class="dropdown-item">Another Action</button>
+      <button class="dropdown-item">Something else is here</button>
     </div>
+  </div> -->
+
+  <!-- <div class="btn-group btn-group-toggle margin-left" ngbRadioGroup name="radioBasic">
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" value="image" (click)="goTopage('image')">
+          <fa name="image"></fa>
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" value="list" (click)="goTopage('list')">
+          <fa name="list-ol"></fa>
+        </label>
+      </div> -->
 </nav>
 
 <!-- <div class="navbar-link-group">

@@ -1,42 +1,88 @@
 <div class="container">
   <div class="contain-content">
+
     <div class="col text-center">
-      <span>เพิ่มรายการสินค้า</span>
+      <h5>เพิ่มรายการสินค้าโรงงาน</h5>
     </div>
-      <div class="col btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="formMode">
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="shop">
-            สินค้าหน้าร้าน
-          </label>
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="factory">
-            สินค้าโรงงาน
-          </label>
+
+    <div *ngIf="formMode == 'factory'">
+      <form (submit)="addItemFactory()" #itemFactory="ngForm">
+        <div class="form-group">
+          <label for="itemName">ชื่อสินค้า: </label>
+          <input type="text" name="itemName" ngModel #itemName="ngModel" placeholder="ระบุชื่อสินค้า" class="form-control"
+            required>
+          <span class="help-block" *ngIf="!itemName.valid && itemName.touched">กรุณาใส่ ชื่อสินค้า !</span>
         </div>
-        <br>
-        <br>
-    <form (submit)="AddItem()">
-      <label for="name">Name: </label>
-      <input type="text" name="name" [(ngModel)]="addedItem.name" placeholder="Type Names">
-      <br>
-      <label for="price">Price: </label>
-      <input type="number" name="price" [(ngModel)]="addedItem.price" placeholder="Price">
+        <div class="form-group">
+          <label for="itemCategory">หมวด: </label>
+          <select id="itemCategory" name="itemCategory" ngModel #itemCategory="ngModel" class="form-control" required
+            (change)="categoryChange()">
+            <option value="" disabled>กรุณาเลือกหมวดสินค้า</option>
+            <option *ngFor="let category of (itemCategoryList$ | async)" [value]="category.name">{{ category.name }}</option>
+          </select>
+          <span class="help-block" *ngIf="!itemCategory.valid && itemCategory.touched">กรุณาใส่ หมวดสินค้า !</span>
+        </div>
+        <div class="form-group">
+          <label for="itemType">ชนิด: </label>
+          <select id="itemType" name="itemType" ngModel #itemType="ngModel" class="form-control" required>
+            <option value="" disabled>กรุณาเลือกชนิดสินค้า</option>
+            <option *ngFor="let type of itemTypeList" [value]="type">{{ type }}</option>
+          </select>
+          <span class="help-block" *ngIf="!itemType.valid && itemType.touched">กรุณาใส่ ชนิดสินค้า !</span>
+        </div>
+        <div class="form-group">
+          <label for="itemSize">ขนาด: </label>
+          <input type="text" name="itemSize" ngModel #itemSize="ngModel" placeholder="ระบุความยาว" class="form-control"
+            required>
+          <span class="help-block" *ngIf="!itemSize.valid && itemSize.touched">กรุณาใส่ ขนาดสินค้า !</span>
+        </div>
+        <div class="form-group">
+          <label for="itemQty">จำนวน: </label>
+          <input type="number" name="itemQty" ngModel #itemQty="ngModel" placeholder="ระบุจำนวนสินค้า" class="form-control"
+            required>
+          <span class="help-block" *ngIf="!itemQty.valid && itemQty.touched">กรุณาใส่ จำนวนสินค้า !</span>
+        </div>
+        <div class="form-group">
+          <label for="itemPrice">ราคาขายต่อชิ้น: </label>
+          <input type="number" name="itemPrice" ngModel #itemPrice="ngModel" placeholder="ระบุราคาขายต่อชิ้น" class="form-control"
+            required>
+          <span class="help-block" *ngIf="!itemPrice.valid && itemPrice.touched">กรุณาใส่ ราคาของสินค้า !</span>
+        </div>
+        <div class="form-group file">
+          <label for="itemImage" class="file-label">รูปภาพสินค้า: <fa name="upload"></fa>
+            <input class="file-input" type="file" name="itemImage" ngModel (change)="uploadFile($event.target.files)"
+              class="form-control" [disabled]="isUploaded">
+          </label>
+          <button type="button" class="btn btn-danger" (click)="removeImage()" *ngIf="isUploaded">นำรูปภาพออก</button>
+          <p>
+            <ngb-progressbar *ngIf="percentage" [showValue]="true" type="info" value="{{percentage | async}}" [striped]="true"
+              [animated]="true"></ngb-progressbar>
+          </p>
+          <div *ngIf="itemImageDownloadUrl">
+            <span>ตัวอย่างรูปภาพ: </span>
+            <div class="col uploaded-image">
+              <ng-template #popContent><b>ตำแหน่งรูปภาพ: </b>{{itemImagePath}}<br><b>ลิ้งภาพ: </b><button class="btn btn-info"><a
+                    href="{{itemImageDownloadUrl}}">ไปที่รูปภาพ</a></button> </ng-template>
+              <ng-template #popTitle><b>รายละเอียดรูปภาพ</b></ng-template>
+              <img src="{{itemImageDownloadUrl}}" placement="top" [popoverTitle]="popTitle" [ngbPopover]="popContent">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <alert [dismissible]="true" [isOpen]="isSuccessed" (onClosed)="onAlertSuccessClosed()">เพิ่มสินค้าสำเร็จ !</alert>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="!itemFactory.valid && !isSuccessed">ตกลง</button>
+          </div>
+          <div class="col text-center">
+            <button type="button" class="btn btn-danger" (click)="goBack()">ยกเลิก</button>
+          </div>
+        </div>
+      </form>
+    </div>
 
-      <div class="file">
-        <label class="file-label">
-          <input class="file-input" type="file"  class="btn btn-primary" (change)="uploadFile($event.target.files)">
-          <span class="file-cta">
-            <span class="file-icon">
-              <i class="fs fs-upload"></i>
-            </span>
-          </span>
-        </label>
-      </div>
-
-      <div *ngIf="(snapshot | async) as snap">
-        {{ snap.bytesTransferred}}
-      </div>
-      <button type="submit" class="btn btn-primary">OK</button>
-    </form>
   </div>
 </div>

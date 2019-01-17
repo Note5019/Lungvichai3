@@ -7,9 +7,9 @@
 }
 
 :root {
-  --nav-bar-top-bg-color: #454343;
   --main-bg-color: #F0EDEC;
-
+  --nav-bar-top-bg-color: #454343;
+  --nav-bar-item-color: rgb(204, 204, 204);
   --container-header: #AFADAC;
   --container-item-list: #C5C2C2;
   --container-item: #DBD8D7;
@@ -21,19 +21,29 @@ body {
 }
 
 a {
-  color: #F0EDEC;
+  color: #84A59D;
 }
 
 .navbar-link-group a.active {
   background-color: #888787 !important;
 }
 
-.nav-item a:hover {
+.nav-item button {
+  background-color: var(--nav-bar-item-color);
+  color: #84A59D;
+  border: solid 1px var(--nav-bar-item-color);
+}
+
+.nav-item button a {
+  padding: 0px;
+}
+
+.nav-item button:hover {
   background-color: #666565;
   color: #F0EDEC;
 }
 
-.nav-item a:active {
+.nav-item button:active {
   background-color: #3F3D3D;
 }
 
@@ -125,9 +135,8 @@ a {
   border-radius: 20px;
 }
 
-.search-item-form {
-  margin-left: auto;
-  margin-right: 0;
+.search-item-form input,.search-item-form button {
+  margin-left: 5px;
 }
 
 .header-fixed-position {
@@ -173,7 +182,7 @@ a {
   }
 } */
 
-.slide-nav {
+/* .slide-nav {
   overflow: hidden;
   background-color: #333;
 }
@@ -231,9 +240,16 @@ a {
     display: block;
     text-align: left;
   }
+} */
 
-
+.margin-left {
+  margin-left: 10px;
 }
-  .margin-left {
-    margin-left: 10px;
-  }
+
+input.ng-invalid.ng-touched {
+  border: solid 1px red;
+}
+
+select.ng-invalid.ng-touched {
+  border: solid 1px red;
+}
